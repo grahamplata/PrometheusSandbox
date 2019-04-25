@@ -7,7 +7,9 @@ A sandbox Docker Environment to experiment with Prometheus and Grafana
 ## How to get started
 
 Clone the Repo: `git clone https://github.com/grahamplata/PrometheusSandbox.git`
+
 Start the demo cluster: `./bin/start`
+
 Stop the demo cluster: `./bin/stop`
 
 ## Accessing Exposed Services
