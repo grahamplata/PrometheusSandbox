@@ -11,3 +11,7 @@ scrape_configs:
     static_configs:
       - targets:
           - "dummy_app:8000"
+  - job_name: "push_gateway"
+    static_configs:
+      - targets:
+          - "push_gateway:9091"
