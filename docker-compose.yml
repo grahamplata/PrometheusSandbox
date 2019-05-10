@@ -32,7 +32,3 @@ services:
       - DOCKER_NETWORK=http://push_gateway:9091
     depends_on:
       - push_gateway
-    deploy:
-      restart_policy:
-        condition: any
-        delay: 10s
