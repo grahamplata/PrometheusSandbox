@@ -25,3 +25,10 @@ services:
     container_name: "app_one"
     ports:
       - "8000:8000"
+  app_two:
+    build: "./containers/app_two"
+    container_name: "app_two"
+    environment:
+      - DOCKER_NETWORK=http://push_gateway:9091
+    depends_on:
+      - push_gateway
