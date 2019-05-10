@@ -20,8 +20,8 @@ services:
     container_name: "push_gateway"
     ports:
       - "9091:9091"
-  bob:
+  dummy_app:
     build: "./containers/app"
-    container_name: "bob"
+    container_name: "dummy_app"
     ports:
       - "8000:8000"
