@@ -7,10 +7,10 @@ scrape_configs:
     static_configs:
       - targets:
           - "node_exporter:9100"
-  - job_name: "app"
+  - job_name: "app_one"
     static_configs:
       - targets:
-          - "dummy_app:8000"
+          - "app_one:8000"
   - job_name: "push_gateway"
     static_configs:
       - targets:
