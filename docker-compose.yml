@@ -21,7 +21,7 @@ services:
     ports:
       - "9091:9091"
   app_one:
-    build: "./containers/app"
+    build: "./containers/app_one"
     container_name: "app_one"
     ports:
       - "8000:8000"
