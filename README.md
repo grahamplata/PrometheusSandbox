@@ -22,3 +22,8 @@ Stop the demo cluster: `./bin/stop`
 ## Defaults
 
 - Grafana credentials: `admin:admin`
+
+## Todos
+
+- Add default dashboards and charts
+- Set internal cron on app_two
