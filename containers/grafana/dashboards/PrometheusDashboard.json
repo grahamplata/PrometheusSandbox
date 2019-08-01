@@ -15,14 +15,17 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 1,
   "links": [],
   "panels": [
     {
       "cacheTimeout": null,
       "colorBackground": false,
       "colorValue": false,
-      "colors": ["#d44a3a", "rgba(237, 129, 40, 0.89)", "#299c46"],
+      "colors": [
+        "#d44a3a",
+        "rgba(237, 129, 40, 0.89)",
+        "#299c46"
+      ],
       "format": "none",
       "gauge": {
         "maxValue": 1,
@@ -54,6 +57,7 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
+      "options": {},
       "pluginVersion": "6.1.6",
       "postfix": "",
       "postfixFontSize": "50%",
@@ -127,6 +131,7 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {},
       "percentage": false,
       "pointradius": 2,
       "points": false,
@@ -201,7 +206,11 @@
       "cacheTimeout": null,
       "colorBackground": false,
       "colorValue": false,
-      "colors": ["#d44a3a", "rgba(237, 129, 40, 0.89)", "#299c46"],
+      "colors": [
+        "#d44a3a",
+        "rgba(237, 129, 40, 0.89)",
+        "#299c46"
+      ],
       "format": "none",
       "gauge": {
         "maxValue": 1,
@@ -233,6 +242,7 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
+      "options": {},
       "pluginVersion": "6.1.6",
       "postfix": "",
       "postfixFontSize": "50%",
@@ -284,7 +294,11 @@
       "cacheTimeout": null,
       "colorBackground": false,
       "colorValue": false,
-      "colors": ["#d44a3a", "rgba(237, 129, 40, 0.89)", "#299c46"],
+      "colors": [
+        "#d44a3a",
+        "rgba(237, 129, 40, 0.89)",
+        "#299c46"
+      ],
       "format": "none",
       "gauge": {
         "maxValue": 1,
@@ -316,6 +330,7 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
+      "options": {},
       "pluginVersion": "6.1.6",
       "postfix": "",
       "postfixFontSize": "50%",
@@ -362,8 +377,70 @@
         }
       ],
       "valueName": "current"
+    },
+    {
+      "datasource": "prometheus",
+      "gridPos": {
+        "h": 7,
+        "w": 4,
+        "x": 0,
+        "y": 18
+      },
+      "id": 8,
+      "links": [],
+      "options": {
+        "fieldOptions": {
+          "calcs": [
+            "last"
+          ],
+          "defaults": {
+            "max": 100,
+            "min": 0,
+            "title": "",
+            "unit": "percent"
+          },
+          "mappings": [],
+          "override": {},
+          "thresholds": [
+            {
+              "color": "green",
+              "index": 0,
+              "value": null
+            },
+            {
+              "color": "#EAB839",
+              "index": 1,
+              "value": 70
+            },
+            {
+              "color": "red",
+              "index": 2,
+              "value": 80
+            }
+          ],
+          "values": false
+        },
+        "orientation": "auto",
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "6.2.5",
+      "targets": [
+        {
+          "expr": "demo_gauge{instance=\"app_one:8000\",job=\"app_one\"} * 100",
+          "format": "time_series",
+          "instant": false,
+          "intervalFactor": 1,
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Python Flask App Capacity",
+      "type": "gauge"
     }
   ],
+  "refresh": "5s",
   "schemaVersion": 18,
   "style": "dark",
   "tags": [],
@@ -371,7 +448,7 @@
     "list": []
   },
   "time": {
-    "from": "now-15m",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {
@@ -387,7 +464,17 @@
       "2h",
       "1d"
     ],
-    "time_options": ["5m", "15m", "1h", "6h", "12h", "24h", "2d", "7d", "30d"]
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
   },
   "timezone": "",
   "title": "Prometheus Dashboard",
