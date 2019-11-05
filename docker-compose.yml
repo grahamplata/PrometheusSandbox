@@ -32,3 +32,19 @@ services:
       - DOCKER_NETWORK=http://push_gateway:9091
     depends_on:
       - push_gateway
+  db:
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: example
+  postgres_exporter:
+    image: "wrouesnel/postgres_exporter"
+    container_name: "postgres_exporter"
+    ports:
+      - "9187:9187"
+    environment:
+      DATA_SOURCE_NAME: "postgresql://postgres:example@db:5432/postgres?sslmode=disable"
+    depends_on:
+      - db
