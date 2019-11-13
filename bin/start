@@ -1,3 +1,26 @@
 #!/bin/bash
 
-docker-compose up -d --build
+main() {
+    docker-compose down --volumes
+
+    docker-compose up --build --remove-orphans --detach
+
+    printf "Waiting for postgres to become available."
+    until docker-compose exec -T db \
+        env PGCONNECT_TIMEOUT=2 psql -U postgres -c "SELECT 1;" >/dev/null 2>&1; do
+        printf .
+        sleep 1
+    done
+    echo
+
+    echo "Creating a database for the application..."
+    psql "postgresql://postgres:example@localhost:5432/postgres?sslmode=disable" -c 'CREATE TABLE dummy_table AS SELECT TO_CHAR(day, 'YYYY-MM-DD'), random() FROM generate_series( '2014-02-01'::DATE, '2019-04-01'::DATE, '1 day'::interval) DAY;' >/dev/null 2>&1;
+
+    echo "Opening Gradana in browser..."
+    open http://localhost:3000
+
+    echo "Default Username: admin"
+    echo "Default Password: admin"
+}
+
+main "$@"

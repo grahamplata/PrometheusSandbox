@@ -16,14 +16,11 @@ Stop the demo cluster: `./bin/stop`
 
 - Grafana `http://localhost:3000`
 - Prometheus `http://localhost:9090`
-- Node Exporter `http://localhost:9100`
+- Prometheus Node Exporter `http://localhost:9100`
+- Prometheus Postgres Exporter `http://localhost:9187`
+- Prometheus Push Gateway `http://localhost:9091`
 - Dummy Application Metrics `http://localhost:8000`
 
 ## Defaults
 
 - Grafana credentials: `admin:admin`
-
-## Todos
-
-- Add default dashboards and charts
-- Set internal cron on app_two
