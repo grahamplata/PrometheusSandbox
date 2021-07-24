@@ -1,50 +1,54 @@
 version: "3.6"
 services:
+  app_one:
+    container_name: "app_one"
+    build: "./containers/app_one"
+    ports:
+      - "8000:8000"
+
+  app_two:
+    container_name: "app_two"
+    build: "./containers/app_two"
+    ports:
+      - "8001:8001"
+    environment:
+      DOCKER_NETWORK: push_gateway:9091
+
   prometheus:
-    build: "./containers/prometheus"
     container_name: "prometheus"
+    build: "./containers/prometheus"
     ports:
       - "9090:9090"
   grafana:
-    build: "./containers/grafana"
     container_name: "grafana"
+    build: "./containers/grafana"
     ports:
       - "3000:3000"
   node_exporter:
+    container_name: "prometheus_node_exporter"
     image: "quay.io/prometheus/node-exporter"
-    container_name: "node_exporter"
     ports:
       - "9100:9100"
   push_gateway:
+    container_name: "prometheus_push_gateway"
     image: "prom/pushgateway"
-    container_name: "push_gateway"
     ports:
       - "9091:9091"
-  app_one:
-    build: "./containers/app_one"
-    container_name: "app_one"
-    ports:
-      - "8000:8000"
-  app_two:
-    build: "./containers/app_two"
-    container_name: "app_two"
-    environment:
-      - DOCKER_NETWORK=http://push_gateway:9091
-    depends_on:
-      - push_gateway
-  db:
-    image: postgres
+
+  postgres:
+    container_name: "postgres"
+    image: postgres:13.3
     restart: always
     ports:
       - "5432:5432"
     environment:
       POSTGRES_PASSWORD: example
   postgres_exporter:
-    image: "wrouesnel/postgres_exporter"
     container_name: "postgres_exporter"
+    image: "wrouesnel/postgres_exporter"
     ports:
       - "9187:9187"
     environment:
-      DATA_SOURCE_NAME: "postgresql://postgres:example@db:5432/postgres?sslmode=disable"
+      DATA_SOURCE_NAME: "postgresql://postgres:example@postgres:5432/postgres?sslmode=disable"
     depends_on:
-      - db
+      - postgres

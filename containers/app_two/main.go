@@ -9,7 +9,6 @@ import (
 	"github.com/prometheus/client_golang/prometheus/push"
 )
 
-
 // PushExampleData emits data to prometheus push gateway
 func PushExampleData() {
 
@@ -20,7 +19,7 @@ func PushExampleData() {
 
 	completionTime.SetToCurrentTime()
 
-	if err := push.New(os.Getenv("DOCKER_NETWORK"), "db_backup").
+	if err := push.New(os.Getenv("DOCKER_NETWORK"), "postgres").
 		Collector(completionTime).
 		Grouping("db", "customers").
 		Push(); err != nil {
@@ -32,6 +31,6 @@ func PushExampleData() {
 func main() {
 	for {
 		PushExampleData()
-		time.Sleep(2 * time.Second)
+		time.Sleep(5 * time.Second)
 	}
 }

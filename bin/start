@@ -6,7 +6,7 @@ main() {
     docker-compose up --build --remove-orphans --detach
 
     printf "Waiting for postgres to become available."
-    until docker-compose exec -T db \
+    until docker-compose exec -T postgres \
         env PGCONNECT_TIMEOUT=2 psql -U postgres -c "SELECT 1;" >/dev/null 2>&1; do
         printf .
         sleep 1
